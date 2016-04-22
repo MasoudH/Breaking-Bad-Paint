@@ -2,22 +2,28 @@
 # Room 149 Period 3
 # Breaking Bad paint
 
-from pygame import *
-from math import *
-from random import randint
-from tkinter import *
-from tkinter.filedialog import askopenfilename
-from tkinter.filedialog import asksaveasfilename
-from Drawing_Tools import *
-from Fonts import *
-from Sub_Tools import *
+try: 
+    from pygame import *
+    from math import *
+    from random import randint
+    from tkinter import *
+    from tkinter.filedialog import askopenfilename
+    from tkinter.filedialog import asksaveasfilename
+    from Drawing_Tools import *
+    from Fonts import *
+    from Sub_Tools import *
+except:
+    pass
 
 init() # Initializing Font and mixer.music
 
-root = Tk()
-root.withdraw()
+try:
+    root = Tk()
+    root.withdraw()
+except:
+    pass
 
-screen = display.set_mode((1366, 768))
+screen = display.set_mode((1366, 768), FULLSCREEN)
 background = image.load("Pictures/Background.jpg")
 screen.blit(background, (0, 0))
 
@@ -467,7 +473,7 @@ while running:
         drawing = screen.subsurface(canvas).copy()
         name = asksaveasfilename(parent=root,title="Save the image as...") # gets file name to save image
         if name[-4:] == ".jpg":
-            image.save(drawing, name + ".jpg")
+            image.save(drawing, name)
 
     if open_rect.collidepoint(mpos) and mb[0] == 1:
         screen.set_clip(canvas)
